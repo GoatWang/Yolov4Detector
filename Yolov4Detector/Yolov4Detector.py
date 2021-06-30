@@ -6,12 +6,11 @@ from Yolov4Detector.utils import scale_coords
 
 base_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'cfgs')
 default_cfg_fp = os.path.join(base_dir, 'yolov4_tiny', 'yolov4-tiny.cfg')
-#default_data_fp = os.path.join(base_dir, 'yolov4_tiny', 'road.data')
 default_weights_fp = os.path.join(base_dir, 'yolov4_tiny', 'yolov4-tiny.weights')
 default_names_fp = os.path.join(base_dir, 'yolov4_tiny', 'coco.names')
 
 class Detector():
-    def __init__(self, cfg_fp=default_cfg_fp, weights_fp=default_weights_fp, names_fp=default_names_fp, batch_size=1):
+    def __init__(self, cfg_fp=default_cfg_fp, names_fp=default_names_fp, weights_fp=default_weights_fp, batch_size=1):
         # write data fp
         temp_dir = os.path.join(os.path.dirname(os.path.realpath(__file__)), 'cfgs') 
         if not os.path.exists(temp_dir):
@@ -22,8 +21,8 @@ class Detector():
             classes = len([line for line in f if line.strip() != ""])
 
         with open(data_fp, 'w') as f:
-            f.write("classes = " + str(classes))
-            f.write("names = " + names_fp)
+            f.write("classes = " + str(classes) + "\n")
+            f.write("names = " + names_fp + "\n")
 
         # init darknet
         self.network, self.class_names, _ = darknet.load_network(

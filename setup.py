@@ -5,13 +5,13 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="Yolov4Detector",
-    version="0.0.9",
+    version="0.1.0",
     author="GoatWang",
-    author_email="jeremywang@thinktronltd.com",
+    author_email="jeremy4555@yahoo.com.tw",
     description="Yolov4Detector",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="http://rd.thinktronltd.com/jeremywang/Yolov4Detector",
+    url="https://github.com/GoatWang/Yolov4Detector",
     packages=setuptools.find_packages(),
     package_data={'Yolov4Detector': ['cfgs/*/*', 'samples/*', 'weights/*', 'utils/*.ttf']},
     classifiers=(
@@ -20,7 +20,7 @@ setuptools.setup(
         "Operating System :: OS Independent",
     ),
       install_requires=[
-        # 'numpy == 1.17',
+        # 'numpy >= 1.17',
         # 'opencv-python >= 4.1',
         # 'matplotlib',
         # 'pillow',
@@ -35,6 +35,7 @@ setuptools.setup(
 # 0.0.7 change to darknet yolov4
 # 0.0.8 DEBUG NMS threshold input
 # 0.0.9 add predict batch function
+# 0.1.0 change to have coco pretrained weight as default
 
 
 # sudo python3 setup.py sdist bdist_wheel
