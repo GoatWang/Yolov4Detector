@@ -1,5 +1,5 @@
 # Introduction
-Darknet python interface.
+Darknet python interface. Tested only in Python3.6, Jetpack4.4, Ubuntu 16.04 and Ubuntu 18.04.
 
 # Pre-Installation
 1. darknet: please set the DARKNET_PATH with libdarknet.so file in environmental varaible. If you don't know how to compile darknet to generate libdarknet.so, please refer to the following commands.
@@ -25,7 +25,7 @@ pip3 install Yolov4Detector
 
 # Usage
 ## image
-```
+```python3
 import cv2
 from Yolov4Detector import io, Detector
 from Yolov4Detector.utils import plot_one_box
@@ -48,7 +48,7 @@ cv2.destroyAllWindows()
 ```
 
 ## video
-```
+```python
 import cv2
 from datetime import datetime, timedelta
 from Yolov4Detector import io, Detector
