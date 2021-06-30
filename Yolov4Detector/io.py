@@ -14,6 +14,6 @@ def get_test_params():
     """
     cfg_fp = os.path.join(base_dir, 'cfgs', 'yolov4_tiny', 'yolov4-tiny.cfg')
     weights_fp = os.path.join(base_dir, 'cfgs', 'yolov4_tiny', 'yolov4-tiny.weights')
-    names_fp = os.path.join(base_dir, 'yolov4-tiny', 'coco.names')
+    names_fp = os.path.join(base_dir, 'cfgs', 'yolov4_tiny', 'coco.names')
     return cfg_fp, names_fp, weights_fp
 

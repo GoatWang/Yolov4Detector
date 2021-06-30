@@ -2,20 +2,25 @@
 Darknet python interface.
 
 # Pre-Installation
-1. darknet (please set the DARKNET_PATH env var)
-2. following python oackages from pip
+1. darknet: please set the DARKNET_PATH with libdarknet.so file in environmental varaible. If you don't know how to compile darknet to generate libdarknet.so, please refer to the following commands.
 ```
-numpy == 1.17
-opencv-python >= 4.1
-matplotlib
-pillow
+# in the darknet path
+import os
+import shutil
+shutil.copyfile('Makefile', 'Makefile_copy')
+with open('Makefile', 'w') as fw, open('Makefile_copy', 'r') as fr:
+    for line in fr:
+        if line in ['GPU=0\n', 'CUDA=0\n', 'CUDNN=0\n' , 'CUDNN_HALF=0\n', 'LIBSO=0\n', 'OPENCV=0\n']: # 'DEBUG=0\n'
+           fw.write(line.replace('=0', '=1'))
+        else:
+            fw.write(line)
+exit()
 ```
+
 
 # Installation
 ```
-pip3 install -U --index-url http://192.168.0.128:28181/simple --trusted-host 192.168.0.128 Yolov4Detector
-
-pip3 install -U --index-url http://rd.thinktronltd.com:28181/simple --trusted-host rd.thinktronltd.com Yolov4Detector
+pip3 install Yolov4Detector
 ```
 
 # Usage
@@ -26,17 +31,15 @@ from Yolov4Detector import io, Detector
 from Yolov4Detector.utils import plot_one_box
 
 # initialize Detector
-cfg_fp, data_fp, weights_fp = io.get_params('yolov4') # yolov4_tiny
-detector = Detector(cfg_fp, data_fp, weights_fp)
-# img_fp = io.get_test_data('road1')
-# img_fp = io.get_test_data('road2')
-img_fp = io.get_test_data('road3')
+cfg_fp, names_fp, weights_fp= get_test_params()
+detector = Detector(cfg_fp, names_fp, weights_fp)
+img_fp = io.get_test_data('bus')
 
 image_bgr = cv2.imread(img_fp)
 boxes, confs, clses = detector.detect(image_bgr, conf_thres=0.15, iou_thres=0.6)
 if len(boxes) != 0:
     for xyxy, conf, cls in zip(boxes, confs, clses):
-        image_bgr = plot_one_box(xyxy, image_bgr, label=cls, color=(255, 0, 0))
+        plot_one_box(xyxy, image_bgr, label=cls, color=(255, 0, 0))
         print(xyxy, conf, cls)
 
 cv2.imshow('img', image_bgr) 
@@ -51,9 +54,9 @@ from datetime import datetime, timedelta
 from Yolov4Detector import io, Detector
 from Yolov4Detector.utils import plot_one_box
 
-cfg_fp, data_fp, weights_fp = io.get_params('yolov4_tiny')
-detector = Detector(cfg_fp, data_fp, weights_fp)
-img_fp = io.get_test_data('road_video')
+cfg_fp, names_fp, weights_fp= get_test_params()
+detector = Detector(cfg_fp, names_fp, weights_fp)
+img_fp = '<video_fp>'
 
 cap = cv2.VideoCapture(img_fp)
 count = 0

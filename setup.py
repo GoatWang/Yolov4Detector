@@ -13,17 +13,17 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/GoatWang/Yolov4Detector",
     packages=setuptools.find_packages(),
-    package_data={'Yolov4Detector': ['cfgs/*/*', 'samples/*', 'weights/*', 'utils/*.ttf']},
+    package_data={'Yolov4Detector': ['cfgs/*/*', 'samples/*']},
     classifiers=(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ),
       install_requires=[
-        # 'numpy >= 1.17',
-        # 'opencv-python >= 4.1',
-        # 'matplotlib',
-        # 'pillow',
+        'numpy >= 1.17',
+        'opencv-python >= 4.1',
+        'matplotlib',
+        'pillow',
       ]
 )
 
